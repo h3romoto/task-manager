@@ -1,9 +1,9 @@
+require('./db/connect')
 const express = require('express')
 const app = express();
-
 const port = 3000
-
 const tasks = require('./routes/tasks')
+const connectDB = require('./db/connect')
 
 app.get('/hello', (req, res) => {
   res.send('Task Manager App')
@@ -15,5 +15,14 @@ app.use(express.json())
 // root route for tasks
 app.use('/api/v1/tasks', tasks)
 
-app.listen(port, console.log(`Server listening on port ${port}`))
+const start = async () => {
+  try {
+    await connectDB()    
+      .then(() => console.log('Connected to the Database...'))
+    app.listen(port, console.log(`Server listening on port ${port}`))
+  } catch (error) {
+    console.log(error)
+  }
+}
 
+start()
