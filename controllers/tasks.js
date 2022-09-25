@@ -1,3 +1,4 @@
+ const Task = require('../models/tasks')
 
 // callback functions
 const getAllTasks = (req, res) => {
@@ -5,6 +6,7 @@ const getAllTasks = (req, res) => {
 }
 
 const createTask = (req, res) => {
+  
   res.json(req.body)
 }
 
