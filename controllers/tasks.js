@@ -32,7 +32,7 @@ const getTask = async (req, res) => {
     if (!task) {
       return res.status(404).json({ msg: `No message with id : ${taskID}` })
     }
-    return res.json({id:req.params.id})
+    res.json({ task })
   } catch (error) {
     res.status(500).json({ msg: error})
   }
