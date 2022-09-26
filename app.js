@@ -4,14 +4,18 @@ const app = express();
 const port = 3000
 const tasks = require('./routes/tasks')
 const connectDB = require('./db/connect')
+const notFound = require('./middleware/not-found')
 require('dotenv').config()
+
 
 app.get('/hello', (req, res) => {
   res.send('Task Manager App')
 })
 
 // middleware
+app.use(express.static('./public'))
 app.use(express.json())
+app.use(notFound)
 
 // root route for tasks
 app.use('/api/v1/tasks', tasks)
