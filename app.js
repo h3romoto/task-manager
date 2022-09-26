@@ -15,14 +15,15 @@ app.get('/hello', (req, res) => {
 // middleware
 app.use(express.static('./public'))
 app.use(express.json())
-app.use(notFound)
+// how does this work?
+// app.use(notFound) 
 
 // root route for tasks
 app.use('/api/v1/tasks', tasks)
 
 const start = async () => {
   try {
-    await connectDB(process.env.MONGO_URI)    
+    await connectDB(process.env.MONGO_URI)
       .then(() => console.log('Connected to the Database...'))
     app.listen(port, console.log(`Server listening on port ${port}`))
   } catch (error) {
