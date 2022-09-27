@@ -11,14 +11,17 @@ require('dotenv').config()
 // middleware
 app.use(express.static('./public'))
 app.use(express.json())
-app.use(errorHandlerMiddleware)
-// how does this work?
-app.use(notFound) 
 
-const port = 3000
 
 // root route for tasks
 app.use('/api/v1/tasks', tasks)
+
+// place custom error handlers at the bottom here
+// below all app.use()'s and other middleware
+app.use(notFound) 
+app.use(errorHandlerMiddleware)
+
+const port = 3000
 
 const start = async () => {
   try {

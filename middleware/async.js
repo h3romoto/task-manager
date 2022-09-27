@@ -3,6 +3,7 @@ const asyncWrapper = (callback) => {
     try {
       await callback(req, res, next)
     } catch (error) {
+      // calls custom error handler
       next(error)
     }
   }
